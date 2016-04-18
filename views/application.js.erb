@@ -1,90 +1,72 @@
 var scheme   = "<%= @scheme %>";
 var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
+var me;
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
-  key_lookup(data);
+  frequencies[data.frequency].gain.gain.value = data.value;
 };
 
 function send(data){
-  ws.send(data);
+  ws.send(JSON.stringify(data));
+}
+var mouse_pos_value;
+var my_frequency;
+
+my_frequency = get_random_frequency();
+
+$(document).mousemove(function(document) {
+  mouse_pos_value = get_mouse_pos_value(document);
+  send({ value: mouse_pos_value, frequency: my_frequency});
+});
+
+function get_mouse_pos_value(element){
+  width_value = element.pageX/$(window).width();
+  height_value = element.pageY/$(window).height();
+  return (width_value+height_value)/2;
+}
+
+function get_random_frequency(){
+  return Math.floor(Math.random() * frequencies.length);
 }
 
 
-var audio_context;
-var gain;
+var audio_context = new (window.AudioContext || window.webkitAudioContext)();
 
-audio_context = new (window.AudioContext || window.webkitAudioContext)();
+var frequencies = [{ frequency: 50, gain: audio_context.createGain() },
+             { frequency: 150, gain: audio_context.createGain() },
+             { frequency: 250, gain: audio_context.createGain() },
+             { frequency: 350, gain: audio_context.createGain() },
+             { frequency: 450, gain: audio_context.createGain() },
+             { frequency: 550, gain: audio_context.createGain() },
+             { frequency: 650, gain: audio_context.createGain() },
+             { frequency: 750, gain: audio_context.createGain() },
+             { frequency: 850, gain: audio_context.createGain() },
+             { frequency: 1050, gain: audio_context.createGain() },
+             { frequency: 1150, gain: audio_context.createGain() },
+             { frequency: 1250, gain: audio_context.createGain() },
+             { frequency: 1350, gain: audio_context.createGain() },
+             { frequency: 1450, gain: audio_context.createGain() },
+             { frequency: 1550, gain: audio_context.createGain() },
+             { frequency: 1650, gain: audio_context.createGain() },
+             { frequency: 1750, gain: audio_context.createGain() },
+             { frequency: 1850, gain: audio_context.createGain() },
+             { frequency: 1950, gain: audio_context.createGain() },
+             { frequency: 2050, gain: audio_context.createGain() }];
 
-var notes = [{ name: 'c4', frequency: 261.6, keyCode: 65 , oscillator: audio_context.createOscillator(), i: 0 },
-             { name: 'd4', frequency: 293.7, keyCode: 83 , oscillator: audio_context.createOscillator(), i: 0 },
-             { name: 'e4', frequency: 329.6, keyCode: 68 , oscillator: audio_context.createOscillator(), i: 0 },
-             { name: 'f4', frequency: 349.2, keyCode: 70 , oscillator: audio_context.createOscillator(), i: 0 },
-             { name: 'g4', frequency: 392.0, keyCode: 71 , oscillator: audio_context.createOscillator(), i: 0 },
-             { name: 'a4', frequency: 440.0, keyCode: 72 , oscillator: audio_context.createOscillator(), i: 0 },
-             { name: 'b4', frequency: 493.9, keyCode: 74 , oscillator: audio_context.createOscillator(), i: 0 },
-             { name: 'c5', frequency: 523.3, keyCode: 75 , oscillator: audio_context.createOscillator(), i: 0 },
-             { name: 'd5', frequency: 587.3, keyCode: 76 , oscillator: audio_context.createOscillator(), i: 0 },
-             { name: 'e5', frequency: 659.3, keyCode: 186, oscillator: audio_context.createOscillator(), i: 0 }];
+$(function(){
+  function setup(frequency) {
+    var oscillator = audio_context.createOscillator();
+    oscillator.connect(frequency.gain);
+    frequency.gain.gain.value = 0;
 
-function key_lookup(note){
-  if(note.action===1) {
-    notes[note.name].oscillator.connect(audio_context.destination);
-  } else {
-    notes[note.name].oscillator.disconnect();
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency.frequency;
+    oscillator.start(0);
+
+    frequency.gain.connect(audio_context.destination);
   }
-}
-
-function hit(button, data) {
-  send(JSON.stringify(data));
-  if(data.action === 1)
-    $(button).off(hit);
-  else
-    $(button).on(hit);
-}
-
-$(function() {
-  function setup(note) {
-    note.oscillator.type = 'sawtooth';
-    note.oscillator.frequency.value = note.frequency;
-    note.oscillator.start(0);
+  for(var i=0;i<frequencies.length;i++){
+    setup(frequencies[i]);
   }
-  for(var i=0;i<notes.length;i++){
-    setup(notes[i]);
-  }
-
-  $('body').on('keydown', function(e) {
-    data = null;
-    switch (e.keyCode) {
-      case 65: if(!notes[0].i){data = {name: 0, action: 1}; notes[0].i++;} break;
-      case 83: if(!notes[1].i){data = {name: 1, action: 1}; notes[1].i++;} break;
-      case 68: if(!notes[2].i){data = {name: 2, action: 1}; notes[2].i++;} break;
-      case 70: if(!notes[3].i){data = {name: 3, action: 1}; notes[3].i++;} break;
-      case 71: if(!notes[4].i){data = {name: 4, action: 1}; notes[4].i++;} break;
-      case 72: if(!notes[5].i){data = {name: 5, action: 1}; notes[5].i++;} break;
-      case 74: if(!notes[6].i){data = {name: 6, action: 1}; notes[6].i++;} break;
-      case 75: if(!notes[7].i){data = {name: 7, action: 1}; notes[7].i++;} break;
-      case 76: if(!notes[8].i){data = {name: 8, action: 1}; notes[8].i++;} break;
-    }
-    if(data) {
-      send(JSON.stringify(data));
-    }
-  });
-  $('body').on('keyup', function(e) {
-    data = null;
-    switch (e.keyCode) {
-      case 65: data = {name: 0, action: 0}; notes[0].i--; break;
-      case 83: data = {name: 1, action: 0}; notes[1].i--; break;
-      case 68: data = {name: 2, action: 0}; notes[2].i--; break;
-      case 70: data = {name: 3, action: 0}; notes[3].i--; break;
-      case 71: data = {name: 4, action: 0}; notes[4].i--; break;
-      case 72: data = {name: 5, action: 0}; notes[5].i--; break;
-      case 74: data = {name: 6, action: 0}; notes[6].i--; break;
-      case 75: data = {name: 7, action: 0}; notes[7].i--; break;
-      case 76: data = {name: 8, action: 0}; notes[8].i--; break;
-    }
-    if(data) {
-      send(JSON.stringify(data));
-    }
-  });
 });
