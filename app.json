@@ -1,7 +1,7 @@
 {
-  "name": "ruby-websockets-chat-demo",
-  "description": "A template for getting started with the WebSockets on Heroku using Ruby.",
-  "website": "http://github.com/heroku-examples/ruby-websockets-chat-demo",
+  "name": "Banda Aberta",
+  "description": "This is the server for Banda Aberta project",
+  "website": "www.ime.usp.br/~fabiog/banda",
   "success_url": "/",
   "addons": ["rediscloud"],
   "env": {},
