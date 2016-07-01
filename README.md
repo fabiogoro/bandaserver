@@ -17,3 +17,8 @@ $ puma
 ```
 
 You can now visit <http://localhost:9292> to see the application.
+
+
+## License
+
+This project is licensed under the terms of the MIT license.

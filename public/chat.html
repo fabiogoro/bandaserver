@@ -9,14 +9,27 @@
     <title>Banda Aberta</title>
     <link type="text/css" href="assets/style.css" rel="stylesheet">
     <link type="text/css" href="assets/lib/css/font-awesome.min.css" rel="stylesheet">
+    <link type="text/css" href="assets/lib/css/jquery-ui.min.css" rel="stylesheet">
   </head>
   <body>
     <div id="main">
-      <input type=text id=chat placeholder='envie uma mensagem' onkeypress='chat(event)'>
+        <div id="faixa" class="faixa">
+      <input type=text id=chat maxlength='140' placeholder='envie uma mensagem' onkeypress='chat(event);'/>
       <div id="messages" ></div>
-      <div id="help"><i class='fa fa-question' onclick='help();'></i></div>
+            
+        </div>    
+            
+      <div id="config"></div>
+      <div id="help">
+        <i class='fa fa-cog' onclick='config();'></i><br/>
+        <i class='fa fa-question' onclick='help(); return false;'></i>
+      </div>
     </div>
+   
     <div id="loading"><i class='fa fa-circle-o-notch fa-spin '></i> Carregando... <span id="percent"></span></div>
+    <div id="main-config">
+      <span>Volume</span><div id="slider"></div>
+    </div>
     <div id="main-help">
       <div id="letters">
         <div id="lowercase">
@@ -105,9 +118,11 @@
         <span onclick="send('\',1)">\</span>
       </div>
       <div id='commands'>
-        <span onclick="send('quieto!')">quieto!</span></br>
-        <span onclick="send('som!')">som!</span></br>
-        <span onclick="send('basta!')">basta!</span></br>
+        <span onclick="send('corta!')">corta!</span><br/>
+        <span onclick="send('som!')">som!</span><br/>
+        <span onclick="send('piano!')">piano!</span><br/>
+        <span onclick="send('mezzo!')">mezzo!</span><br/>
+        <span onclick="send('basta!')">quieto!</span><br/>
       </div>
       <i class='fa fa-arrow-circle-o-up' onclick="caps()"></i>
       <span id='cmd_key' onclick="cmd_keys()">cmd</span>
@@ -115,12 +130,16 @@
     </div>
     <div id="close"><i class='fa fa-times' onclick='quit_help();'></i></div>
 
+    <script type="text/javascript" src="assets/config.js"></script>
     <script type="text/javascript" src="assets/lib/js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="assets/lib/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="assets/sounds.js"></script>
     <script type="text/javascript" src="assets/ios_hack.js"></script>
     <script type="text/javascript" src="assets/chat.js"></script>
     <script type="text/javascript" src="assets/connection.js"></script>
+    <script type="text/javascript" src="assets/connection_test.js"></script>
     <script type="text/javascript" src="assets/help.js"></script>
+    <script type="text/javascript" src="assets/commands.js"></script>
   
 
 

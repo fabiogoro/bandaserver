@@ -1,12 +1,14 @@
-var sample = [{},{},{}];
+var sample = [];
 var buffer = [];
 var files;
 var audio_context;
 var compressor;
 var gain;
+var destination;
 start_web_audio();
 
 function start_web_audio(){
+  if(audio_context!=null) audio_context.close();
   audio_context = new (window.AudioContext || window.webkitAudioContext)();
   compressor = audio_context.createDynamicsCompressor();
   compressor.threshold.value = -50;
@@ -14,9 +16,12 @@ function start_web_audio(){
   compressor.ratio.value = 24;
   compressor.reduction.value = -20;
   gain = audio_context.createGain();
+  master_gain = audio_context.createGain();
   gain.gain.value = 1;
-  gain.connect(audio_context.destination);
+  gain.connect(master_gain);
+  destination = gain;
   compressor.connect(gain);
+  master_gain.connect(audio_context.destination);
 }
 
 function play(pos){
@@ -24,7 +29,7 @@ function play(pos){
   var sound = buffer[pos].shift().charCodeAt(0);
   if(sample[folder][sound]===0) sound = 0;
   source.buffer = sample[folder][sound];
-  source.connect(compressor);
+  source.connect(destination);
   source.onended = function(){if(buffer.length != 0 && buffer[pos] != '' ) play(pos);};
   source.start(0);
 }
@@ -35,11 +40,10 @@ $(function(){
 
 function init(){
   files = 0;
-  var format = ['.mp3', /*'.ogg', /*'.wav'*/];
-  for(j=0;j<format.length;j++){
-    load_folder(0, format[j]);
-    load_folder(1, format[j]);
-    //load_folder(2, format[j]);
+  var format = ['.mp3' /*'.ogg', /*'.wav'*/];
+  for(i=0;i<=FOLDERS;i++){
+    sample.push({});
+    load_folder(i, format[0]);
   }
 }
 
@@ -56,7 +60,7 @@ function load(folder, file, format){
   request.onload = function() {
     files--;
     $('#percent').html(Math.floor((total-files)/total*100)+'%');
-    if (this.status === 404) {if(!sample[folder][file]) sample[folder][file] = 0;}
+    if (this.status === 404) {if(!sample[folder][file]) sample[folder][file] = 0; if(files<50) loaded();}
     else {
       audio_context.decodeAudioData(request.response, function(buffer) {
         sample[folder][file] = buffer;
@@ -64,7 +68,8 @@ function load(folder, file, format){
       }, on_error);
     }
   };
-  request.open('GET', 'samples_'+folder+'/'+file+format, true);
+  if(!file) request.open('GET', 'samples_0/32.mp3', true);
+  else request.open('GET', 'samples_'+folder+'/'+file+format, true);
   request.responseType = 'arraybuffer';
   request.send();
 }

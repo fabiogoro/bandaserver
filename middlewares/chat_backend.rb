@@ -3,6 +3,7 @@ require 'thread'
 require 'redis'
 require 'json'
 require 'erb'
+require 'logger'
 
 module ChatDemo
   class ChatBackend
@@ -17,8 +18,8 @@ module ChatDemo
       if Faye::WebSocket.websocket?(env)
         ws = Faye::WebSocket.new(env, nil, {ping: KEEPALIVE_TIME })
         ws.on :open do |event|
-          p [:open, ws.object_id]
           @clients << ws
+          p [:open, ws.object_id, @clients.length]
         end
 
         ws.on :message do |event|
@@ -32,8 +33,13 @@ module ChatDemo
           ws = nil
         end
 
+        ws.on :error do |event|
+          p [:error, event.message]
+        end
+
         # Return async Rack response
         ws.rack_response
+
 
       else
         @app.call(env)

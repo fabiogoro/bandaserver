@@ -5,6 +5,11 @@ html {
   box-sizing: inherit;
 }
 
+#slider {
+  margin: 10px;
+  margin-right: 60px;
+}
+
 .msg {
   margin: 0;
   width: 100%; 
@@ -34,10 +39,7 @@ html {
 }
 
 #chat {
-  width: 100%; 
-  border: 2px solid #000; 
-  font-family: arial; 
-  font-size: 20px;
+
 }
 
 @media (min-width: 700px) { 
@@ -140,6 +142,13 @@ h1 {
   display: none;
 }
 
+#main-config {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  display: none;
+}
+
 #uppercase {
   display: none;
   width: 85%;
@@ -162,3 +171,53 @@ h1 {
 .text {
     font-size: 12pt;
 }
+
+.faixa {
+    width: 100%;
+    float: left;
+}
+
+.multi .faixa {
+    width: 25%;
+    padding: 5px;
+}
+
+.faixa input {
+    width: 100%;
+      width: 100%; 
+  border: 2px solid #000; 
+  font-family: arial; 
+  font-size: 20px;
+}
+
+
+i.fa-question {
+    display: none;
+}
+
+/* Telefones em landscape e abaixo */
+@media (max-width: 480px)  { 
+
+    .multi .faixa {
+        width: calc(100%-5px);
+    }
+    
+    #main.multi {
+        width: 400%;
+    }
+
+
+}
+
+/* Telefone em landscape a tablet em portrait */
+@media (min-width: 481px) and (max-width: 767px) { 
+ .multi .faixa {
+        width: calc(100%-5px);
+    }
+    
+    #main.multi {
+        width: 200%;
+    }
+
+}
+
