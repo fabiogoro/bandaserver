@@ -4,7 +4,7 @@ workers 0
 
 port 8080
 
-daemonize
+#daemonize
 
 pidfile 'puma.pid'
 

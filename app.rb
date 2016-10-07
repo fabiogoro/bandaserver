@@ -11,5 +11,8 @@ module ChatDemo
     get '/' do
       File.read 'public/index.html'
     end
+    get '/sudo' do
+      '1' if params[:pwd] == ENV['BANDA'] 
+    end
   end
 end
