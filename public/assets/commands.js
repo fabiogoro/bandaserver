@@ -14,6 +14,10 @@ function system_commands(data){
     start_web_audio(); 
     return true;
   }
+  if(data.text.substr(0,4) === '/bpm') {
+    if(data.text.substr(4)) bpm = parseInt(data.text.substr(4));
+    return true;
+  }
   if(data.text.substr(0,4) === 'sudo') {
     words = data.text.split(' ');
     if(words.length>1) pwd = words[1];
