@@ -5,6 +5,7 @@ var id = 0;
 var folder = 0;
 var record;
 var load_flag = 1;
+var speak_flag = false;
 
 function send(data, touch){
   if(!touch) touch=0;
@@ -25,14 +26,26 @@ function loaded(){
     ws.onmessage = function(message) {
       var data = JSON.parse(message.data);
       if(!system_commands(data)) {
+        if(speak_flag) meSpeak.speak(data.text);
         if(!data.touch) {
-          var p = $('<p />',{class: 'msg', text: data.text});
+          var p = $('<p />',{class: 'msg from_chat', text: data.text});
           $('#messages').prepend(p);
-        }
-        if(!simple_commands(data.text.toLowerCase())) {
-          var text = data.text.split('');
-          buffer.push(text);
-          play(buffer.length-1);
+          if(!simple_commands(data.text.toLowerCase())) {
+            var text = data.text.split('');
+            buffer.push(text);
+            play(buffer.length-1);
+          }
+        } else {
+          if(data.touch==1){
+            var p = $('<p />',{class: 'msg from_loop '+data.text, text: data.text});
+            $('#loop').prepend(p);
+            $('#messages :contains('+data.text+')').text('').remove();
+            var text = data.text.split('');
+            buffer.push(text);
+            play_repeat(buffer.length-1, p);
+          } else {
+            $("[class='msg from_loop "+data.text+"']").text('').remove();
+          }
         }
       }
       if(!record) $('#messages p:nth-child(100)').remove();

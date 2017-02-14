@@ -19,3 +19,21 @@
 === puma startup: 2016-10-07 17:34:34 -0300 ===
 === puma startup: 2016-10-08 00:30:46 -0300 ===
 === puma startup: 2016-10-08 00:58:47 -0300 ===
+=== puma startup: 2017-02-14 13:33:25 -0200 ===
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1042: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1043: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1042: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1043: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1042: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1043: warning: constant ::Fixnum is deprecated
+=== puma startup: 2017-02-14 13:56:42 -0200 ===
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1042: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1043: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1042: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1042: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1042: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1043: warning: constant ::Fixnum is deprecated
+=== puma startup: 2017-02-14 14:13:23 -0200 ===
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1042: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1043: warning: constant ::Fixnum is deprecated
+/home/fabio/.rvm/gems/ruby-2.4.0/gems/sinatra-1.4.3/lib/sinatra/base.rb:1042: warning: constant ::Fixnum is deprecated

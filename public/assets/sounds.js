@@ -21,14 +21,32 @@ function start_web_audio(){
 }
 
 var bpm = 120;
-function play(pos){
+function play_sample(pos){
   var source = audio_context.createBufferSource();
   var sound = buffer[pos].shift().charCodeAt(0);
   if(sample[folder][sound]===0) sound = 0;
   source.buffer = sample[folder][sound];
   source.connect(destination);
-  setTimeout(function(){if(buffer.length != 0 && buffer[pos] != '' ) play(pos);},60/bpm*1000);
   source.start(0);
+}
+
+function play(pos){
+  play_sample(pos);
+  if(buffer.length != 0 && buffer[pos] != '') setTimeout('play('+pos+')',60/bpm*1000);
+}
+
+function play_repeat(pos, p_element){
+  play_sample(pos);
+  if(buffer.length != 0 && buffer[pos] != '') setTimeout(play_repeat,60/bpm*1000,pos,p_element);
+  else{
+    if(p_element.text()!=''){
+      buffer[pos]=p_element.text().split(''); 
+      setTimeout(play_repeat,60/bpm*1000,pos,p_element);
+    }
+  }
+  //pos = buffer.length-1;
+  //play(pos);
+  //play_repeat(data);
 }
 
 $(function(){

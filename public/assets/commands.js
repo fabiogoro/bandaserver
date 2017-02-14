@@ -6,6 +6,10 @@ function system_commands(data){
     if(reg.test(info)) folder = info;
     return true;
   }
+  if(data.text === '/speak') {
+    speak_flag = !speak_flag;
+    return true;
+  }
   if(data.text === '/compressor') {
     destination = (destination==compressor) ? gain : compressor; 
     return true;
@@ -24,7 +28,7 @@ function system_commands(data){
     $.get('sudo', {pwd: pwd}, function( data ) {
       if(data){
         code = '';
-        for(var i=2;i<words.length;i++) code+=words[i];
+        for(var i=2;i<words.length;i++) code+=words[i]+' ';
         $('#messages').prepend('<p class="msg">'+code+'</p>');
       }
     });

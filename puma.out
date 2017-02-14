@@ -13858,3 +13858,41 @@
 [:close, 7911280, 1006, ""]
 [:close, 12267720, 1006, ""]
 [:close, 8684620, 1006, ""]
+=== puma startup: 2017-02-14 13:33:25 -0200 ===
+[:open, 14401380, 1]
+[:message, "{\"text\":\"/samples\",\"touch\":0}"]
+[:message, "{\"text\":\"alo\",\"touch\":0}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:close, 14401380, 1001, ""]
+- Gracefully stopping, waiting for requests to finish
+- Goodbye!
+=== puma startup: 2017-02-14 13:56:42 -0200 ===
+[:open, 15493980, 1]
+[:message, "{\"text\":\"/samples\",\"touch\":0}"]
+[:message, "{\"text\":\"alo\",\"touch\":0}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:message, "{\"text\":\"alo\",\"touch\":1}"]
+[:close, 15493980, 1001, ""]
+- Gracefully stopping, waiting for requests to finish
+- Goodbye!
+=== puma startup: 2017-02-14 14:13:23 -0200 ===
+[:open, 14552640, 1]
+[:message, "{\"text\":\"/samples\",\"touch\":0}"]
+[:message, "{\"text\":\"ola\",\"touch\":0}"]
+[:message, "{\"text\":\"ae\",\"touch\":0}"]
+- Gracefully stopping, waiting for requests to finish
+- Goodbye!
+[:close, 14552640, 1006, ""]
