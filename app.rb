@@ -2,11 +2,8 @@ require 'sinatra/base'
 
 module ChatDemo
   class App < Sinatra::Base
-    get '/admin' do
-      File.read 'public/admin.html'
-    end
-    get '/live' do
-      File.read 'public/live.html'
+    get '/bandawa' do
+      File.read 'public/bandawa/index.html'
     end
     get '/' do
       File.read 'public/index.html'

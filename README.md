@@ -6,10 +6,10 @@ This was created based on this Heroku example (https://devcenter.heroku.com/arti
 
 ## Setup
 First step is to clone the Banda Aberta front page.
-
 ```
-git clone https://github.com/fabiogoro/banda public
+git clone https://github.com/fabiogoro/banda
 ```
+You'll need to move all content from this to the 'public' directory.
 
 Then check for dependencies. For this step, [ruby bundler](http://bundler.io/) is needed.
 ```
