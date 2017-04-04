@@ -5,18 +5,23 @@ This is a server using WebSockets, Faye and Puma for switching messages through 
 This was created based on this Heroku example (https://devcenter.heroku.com/articles/ruby-websockets).
 
 ## Setup
-To install all the dependencies, run:
+First step is to clone the Banda Aberta front page.
 
+```
+git clone https://github.com/fabiogoro/banda public
+```
+
+Then check for dependencies. For this step, [ruby bundler](http://bundler.io/) is needed.
 ```
 bundle install
 ```
-To start the server locally, run:
 
+Last step is to run the start script.
 ```
-$ puma
+$ ./run.sh
 ```
 
-You can now visit <http://localhost:9292> to see the application.
+You can now visit <http://localhost:8080>.
 
 
 ## License

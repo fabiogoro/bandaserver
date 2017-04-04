@@ -8,4 +8,4 @@ port 8080
 
 pidfile 'puma.pid'
 
-stdout_redirect 'puma.out', 'puma.err', true
+stdout_redirect 'public/puma.html', 'puma.err', true

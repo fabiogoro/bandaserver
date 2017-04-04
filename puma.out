@@ -13896,3 +13896,12 @@
 - Gracefully stopping, waiting for requests to finish
 - Goodbye!
 [:close, 14552640, 1006, ""]
+=== puma startup: 2017-04-03 20:48:09 -0300 ===
+[:open, 14607780, 1]
+[:message, "{\"text\":\"aa\",\"touch\":0}"]
+[:message, "{\"text\":\"aa\",\"touch\":0}"]
+[:message, "{\"text\":\"aa\",\"touch\":1}"]
+[:message, "{\"text\":\"aa\",\"touch\":0}"]
+[:close, 14607780, 1001, ""]
+- Gracefully stopping, waiting for requests to finish
+- Goodbye!
