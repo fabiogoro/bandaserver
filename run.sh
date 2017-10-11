@@ -5,5 +5,5 @@ if [ $1 -ne 0 ]; then
   echo $BANDA;
 fi
 
-puma -C config.rb;
+puma -C config.rb >> public/puma.html;
 

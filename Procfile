@@ -1,1 +1,1 @@
-web: bundle exec puma -p $PORT -C config.rb
+web: bundle exec puma -p $PORT -C config.rb >> public/puma.html

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Web Audio">
+    <meta name="author" content="Banda Aberta">
+
+    <title>Banda Aberta</title>
+    <link type="text/css" href="assets/style.css" rel="stylesheet">
+    <link type="text/css" href="../assets/lib/css/font-awesome.min.css" rel="stylesheet">
+    <link type="text/css" href="../assets/lib/css/jquery-ui.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="main">
+      <div id="faixa" class="faixa">
+        <p class="info">enter in the open band wifi network and type this adress to join:</p>
+        <input type=text id=chat maxlength='140' placeholder='envie uma mensagem' onkeypress='chat(event);'/>
+        <div id="messages" ></div>
+      </div>
+    </div>
+
+  
+
+
+    <script type="text/javascript">
+      var SERVER = "wss://aberta.herokuapp.com/";
+    </script>
+    <script type="text/javascript" src="../assets/lib/js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="../assets/lib/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="assets/ios_hack.js"></script>
+    <script type="text/javascript" src="assets/fft.js"></script>
+    <script type="text/javascript" src="assets/chat.js"></script>
+
+
+
+</body>
+</html>
